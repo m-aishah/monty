@@ -26,5 +26,6 @@ int main(int ac, char *av[])
     }
 
     exit_status = run_monty(filepathName);
+    fclose(filepathName);
     exit(exit_status);
 }

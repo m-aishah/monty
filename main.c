@@ -13,7 +13,7 @@ int main(int ac, char *av[])
     int exit_status;
     FILE *filepathName;
 
-    if (ac != 1)
+    if (ac != 2)
     {
         fprintf(stderr, "USAGE: monty file\n");
         exit(EXIT_FAILURE);
@@ -25,6 +25,6 @@ int main(int ac, char *av[])
         exit(EXIT_FAILURE);
     }
 
-    exit_status = run_monty(FILE * filepathName);
+    exit_status = run_monty(filepathName);
     exit(exit_status);
 }

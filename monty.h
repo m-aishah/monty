@@ -46,4 +46,5 @@ void push_to_stack(stack_t **stack, unsigned int line_number);
 void print_all_stack(stack_t **stack, unsigned int line_number);
 int is_valid_int(char *value);
 void free_stack(stack_t **stack);
+
 #endif

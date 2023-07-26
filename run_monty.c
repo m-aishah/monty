@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <string.h>
 
-char *my_strdup(const char *src);
 char **all_Op_Tokens = NULL;
 int execFunc_exitStatus = EXIT_SUCCESS;
+
 /**
  * run_monty: Function to run the bytecodes on each line
  * @filepathName: Path of the file containing bytecodes

@@ -1,7 +1,10 @@
-#include "monty.h"
+#define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
+#include "monty.h"
 #include <string.h>
 
+char **all_Op_Tokens;
+int execFunc_exitStatus;
 /**
  * run_monty: Function to run the bytecodes on each line
  * @filepathName: Path of the file containing bytecodes
@@ -19,7 +22,7 @@ int run_monty(FILE *filepathName)
     int exit_status = EXIT_SUCCESS;
     char *optoken = NULL;
     char *lineContent = NULL;
-    char **all_Op_Tokens;
+    char **all_Op_Tokens = NULL;
 
     stack = malloc(sizeof(stack_t));
     if (stack == NULL)

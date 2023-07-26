@@ -1,7 +1,12 @@
+#define _POSIX_C_SOURCE 200809L
+
 #include "monty.h"
 #include <stdio.h>
 #include <string.h>
 
+char *my_strdup(const char *src);
+char **all_Op_Tokens = NULL;
+int execFunc_exitStatus = EXIT_SUCCESS;
 /**
  * run_monty: Function to run the bytecodes on each line
  * @filepathName: Path of the file containing bytecodes
@@ -19,8 +24,8 @@ int run_monty(FILE *filepathName)
     int exit_status = EXIT_SUCCESS;
     char *optoken = NULL;
     char *lineContent = NULL;
-    char **all_Op_Tokens;
 
+    all_Op_Tokens = malloc(1024 * sizeof(char *));
     stack = malloc(sizeof(stack_t));
     if (stack == NULL)
     {
@@ -38,10 +43,12 @@ int run_monty(FILE *filepathName)
         optoken = strtok(lineContent, " \t");
         while (optoken != NULL)
         {
-            all_Op_Tokens[token_Count] = strdup(optoken);
-            token_Count++;
+
+            all_Op_Tokens[token_Count] = my_strdup(optoken);
             optoken = strtok(NULL, " \t");
+            token_Count++;
         }
+        all_Op_Tokens[token_Count] = NULL;
         if (execute_Opcode(&stack, line_number) == EXIT_FAILURE)
         {
             free_Opcode(token_Count);
@@ -51,6 +58,7 @@ int run_monty(FILE *filepathName)
         }
         free_Opcode(token_Count);
         free(lineContent);
+        token_Count = 0;
     }
     if (char_Count == -1 && errno == ENOMEM)
     {
@@ -100,7 +108,6 @@ void free_stack(stack_t **stack)
 int execute_Opcode(stack_t **stack, unsigned int line_number)
 {
     int i;
-    int execFunc_exitStatus = EXIT_SUCCESS;
 
     instruction_t get_Op_Function[] = {
         {"push", push_to_stack},

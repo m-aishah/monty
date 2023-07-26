@@ -24,6 +24,7 @@ int main(int ac, char *av[])
         fprintf(stderr, "Error: Can't open file %s", av[1]);
         exit(EXIT_FAILURE);
     }
+    printf("Working!\n");
 
     exit_status = run_monty(filepathName);
     fclose(filepathName);

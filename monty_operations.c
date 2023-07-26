@@ -2,7 +2,7 @@
 
 void push_to_stack(stack_t **stack, unsigned int line_number)
 {
-	stack_t *newNode;
+    stack_t *newNode;
 
     if (all_Op_Tokens[1] == NULL)
     {
@@ -39,6 +39,7 @@ void push_to_stack(stack_t **stack, unsigned int line_number)
         (*stack) = newNode;
     }
     execFunc_exitStatus = EXIT_SUCCESS;
+    printf("Push successful\n");
     return;
 
 } /* check line 21*/
@@ -55,8 +56,8 @@ int is_valid_int(char *value)
 
     for (i = 0; value[i]; i++)
     {
-		if (i == 0 && value[i] == '-')
-			continue;
+        if (i == 0 && value[i] == '-')
+            continue;
         if (value[i] < '0' || value[i] > '9')
             return (0);
     }
@@ -67,7 +68,7 @@ void print_all_stack(stack_t **stack, unsigned int line_number)
 {
     stack_t *tmp = (*stack);
 
-	(void) line_number;
+    (void)line_number;
 
     while (tmp != NULL)
     {

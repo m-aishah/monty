@@ -9,14 +9,22 @@
 
 int run_monty(FILE *filepathName)
 {
-    char *lineContent = NULL;
+    stack_t *stack = NULL;
+
     size_t n = 0;
     int char_Count = 0;
     int line_number = 0;
     int token_Count = 0;
     char *optoken = NULL;
+    char *lineContent = NULL;
     char *all_Op_Tokens[1024] = NULL;
 
+    stack = malloc(sizeof(stack_t));
+    if (stack == NULL)
+    {
+        fprintf(stderr, "Error: malloc failed\n");
+        return (EXIT_FAILURE);
+    }
     while ((char_Count = getline(&lineContent, &n, filepathName)) != -1)
     {
 
@@ -32,7 +40,7 @@ int run_monty(FILE *filepathName)
             token_Count++;
             optoken = strtok(NULL, " \t");
         }
-        if (execute_Opcode(line_number) == EXIT_FAILURE)
+        if (execute_Opcode(&stack, line_number) == EXIT_FAILURE)
         {
             free_Opcode(token_Count);
             free(lineContent);
@@ -69,11 +77,10 @@ void free_Opcode(int token_Count)
  * Return: exit status of the operation -
  * EXIT_SUCCESS on success and EXIT_FAILURE on failure.
  */
-int execute_Opcode(int line_number)
+int execute_Opcode(stack_t **stack, int line_number)
 {
     int i;
 
-    stack_t *stack;
     instruction_t get_Op_Function[] = {
         {"push", push_to_stack},
         {"pall", print_all_stack},
@@ -83,13 +90,13 @@ int execute_Opcode(int line_number)
     {
         if (strcmp(all_Op_Tokens[0], get_Op_Function[i].opcode) == 0)
         {
-            get_Op_Function[i].f(&stack, line_number);
+            get_Op_Function[i].f(stack, line_number);
             break;
         }
     }
     if (i == 3)
     {
-        fprintf(stderr, "L%d: unknown instruction %s", line_number, all_Op_Tokens[0]);
+        fprintf(stderr, "L%d: unknown instruction %s\n", line_number, all_Op_Tokens[0]);
         return (EXIT_FAILURE);
     }
     return (EXIT_SUCCESS);

@@ -42,5 +42,5 @@ int run_monty(FILE *filepathName);
 void free_Opcode(int token_Count);
 int execute_Opcode(int line_number);
 void push_to_stack(stack_t **stack, unsigned int line_number);
-
+void is_valid_int(char *value);
 #endif

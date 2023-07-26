@@ -37,10 +37,13 @@ typedef struct instruction_s
 } instruction_t;
 
 extern char *all_Op_Tokens[1024];
+extern int execFunc_exitStatus;
 
 int run_monty(FILE *filepathName);
 void free_Opcode(int token_Count);
-int execute_Opcode(int line_number);
+int execute_Opcode(stack_t **stack, unsigned int line_number);
 void push_to_stack(stack_t **stack, unsigned int line_number);
-void is_valid_int(char *value);
+void print_all_stack(stack_t **stack, unsigned int line_number);
+int is_valid_int(char *value);
+void free_stack(stack_t **stack);
 #endif

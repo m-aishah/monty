@@ -10,11 +10,11 @@
 int run_monty(FILE *filepathName)
 {
     stack_t *stack = NULL;
-
     size_t n = 0;
     int char_Count = 0;
-    int line_number = 0;
+    unsigned int line_number = 0;
     int token_Count = 0;
+    int exit_status = EXIT_SUCCESS;
     char *optoken = NULL;
     char *lineContent = NULL;
     char *all_Op_Tokens[1024] = NULL;
@@ -44,7 +44,8 @@ int run_monty(FILE *filepathName)
         {
             free_Opcode(token_Count);
             free(lineContent);
-            return (EXIT_FAILURE);
+            exit_status = EXIT_FAILURE;
+            break;
         }
         free_Opcode(token_Count);
         free(lineContent);
@@ -55,7 +56,8 @@ int run_monty(FILE *filepathName)
         return (EXIT_FAILURE);
     }
 
-    return (EXIT_SUCCESS);
+    free_stack(&stack);
+    return (exit_status);
 }
 
 /**
@@ -71,15 +73,32 @@ void free_Opcode(int token_Count)
 }
 
 /**
+ * free_stack - Function to free a stack
+ * @stack - Address of stack to be freed
+ */
+void free_stack(stack_t **stack)
+{
+    stack_t *tmp = *stack;
+
+    while (tmp)
+    {
+        (*stack) = (*stack)->prev;
+        free(tmp);
+        tmp = (*stack);
+    }
+}
+
+/**
  * @execute_Opcode - Function to execute the bytecode on a line.
  * @all_Op_Tokens - Array of tokens
  * @line_Count - The line that is currently being executed
  * Return: exit status of the operation -
  * EXIT_SUCCESS on success and EXIT_FAILURE on failure.
  */
-int execute_Opcode(stack_t **stack, int line_number)
+int execute_Opcode(stack_t **stack, unsigned int line_number)
 {
     int i;
+    int execFunc_exitStatus = EXIT_SUCCESS;
 
     instruction_t get_Op_Function[] = {
         {"push", push_to_stack},
@@ -99,5 +118,5 @@ int execute_Opcode(stack_t **stack, int line_number)
         fprintf(stderr, "L%d: unknown instruction %s\n", line_number, all_Op_Tokens[0]);
         return (EXIT_FAILURE);
     }
-    return (EXIT_SUCCESS);
+    return (execFunc_exitStatus);
 }

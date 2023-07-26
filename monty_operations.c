@@ -2,13 +2,14 @@
 
 void push_to_stack(stack_t **stack, unsigned int line_number)
 {
+	stack_t *newNode;
+
     if (all_Op_Tokens[1] == NULL)
     {
         fprintf(stderr, "L%d: unknown instruction %s\n", line_number, all_Op_Tokens[0]);
         execFunc_exitStatus = EXIT_FAILURE;
         return;
     }
-    stack_t *newNode;
 
     newNode = malloc(sizeof(stack_t));
     if (newNode == NULL)
@@ -54,8 +55,8 @@ int is_valid_int(char *value)
 
     for (i = 0; value[i]; i++)
     {
-        if (i = 0 && value[i] == '-')
-            continue;
+		if (i == 0 && value[i] == '-')
+			continue;
         if (value[i] < '0' || value[i] > '9')
             return (0);
     }
@@ -65,6 +66,8 @@ int is_valid_int(char *value)
 void print_all_stack(stack_t **stack, unsigned int line_number)
 {
     stack_t *tmp = (*stack);
+
+	(void) line_number;
 
     while (tmp != NULL)
     {

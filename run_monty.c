@@ -1,4 +1,6 @@
 #include "monty.h"
+#include <stdio.h>
+#include <string.h>
 
 /**
  * run_monty: Function to run the bytecodes on each line
@@ -17,7 +19,7 @@ int run_monty(FILE *filepathName)
     int exit_status = EXIT_SUCCESS;
     char *optoken = NULL;
     char *lineContent = NULL;
-    char *all_Op_Tokens[1024] = NULL;
+    char **all_Op_Tokens;
 
     stack = malloc(sizeof(stack_t));
     if (stack == NULL)

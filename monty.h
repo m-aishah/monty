@@ -36,7 +36,7 @@ typedef struct instruction_s
     void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern char *all_Op_Tokens[1024];
+extern char **all_Op_Tokens;
 extern int execFunc_exitStatus;
 
 int run_monty(FILE *filepathName);

@@ -96,8 +96,6 @@ void print_top_stack(stack_t **stack, unsigned int line_number)
 {
     stack_t *temp = *stack;
 
-    (void)line_number;
-
     temp = temp->next;
     if (temp == NULL)
     {

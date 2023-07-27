@@ -25,3 +25,9 @@ int pop_error(unsigned int line_number)
     printf("L%d: can't pop an empty stack\n", line_number);
     return (EXIT_FAILURE);
 }
+
+int swap_error(unsigned int line_number)
+{
+    printf("L%d: can't swap, stack too short\n");
+    return (EXIT_FAILURE);
+}

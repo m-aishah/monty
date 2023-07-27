@@ -1,48 +1,49 @@
 #include "monty.h"
 
+void push_to_stack(stack_t **stack, unsigned int line_number);
+void print_all_stack(stack_t **stack, unsigned int line_number);
+int is_valid_int();
+/**
+ * push_to_stack - Function to push an integer to a stack.
+ * @stack: A pointer to the top (mode node) of a stack.
+ * @line_number: The number of the line containing the push code in the bytecode file.
+ */
 void push_to_stack(stack_t **stack, unsigned int line_number)
 {
-    stack_t *newNode;
+	stack_t *tmp, *newNode;
 
-    if (all_Op_Tokens[1] == NULL)
-    {
-        fprintf(stderr, "L%d: unknown instruction %s\n", line_number, all_Op_Tokens[0]);
-        execFunc_exitStatus = EXIT_FAILURE;
-        return;
-    }
+	newNode = malloc(sizeof(stack_t));
+	if (newNode == NULL)
+	{
+		malloc_error();
+		set_op_tok_error(EXIT_FAILURE);
+		return;
+	}
 
-    newNode = malloc(sizeof(stack_t));
-    if (newNode == NULL)
-    {
-        fprintf(stderr, "Error: malloc failed\n");
-        execFunc_exitStatus = EXIT_FAILURE;
-        return;
-    }
-    if (is_valid_int(all_Op_Tokens[1]) == 0)
-    {
-        fprintf(stderr, "L%d: unknown instruction %s\n", line_number, all_Op_Tokens[0]);
-        execFunc_exitStatus = EXIT_FAILURE;
-        return;
-    }
-    newNode->n = atoi(all_Op_Tokens[1]);
+	if (all_op_tokens[1] == NULL)
+	{
+		set_op_tok_error(no_int_error(line_number));
+		return;
+	}
 
-    if ((*stack) == NULL)
-    {
-        newNode->prev = NULL;
-        newNode->next = NULL;
-        (*stack) = newNode;
-    }
-    else
-    {
-        newNode->prev = (*stack);
-        newNode->next = NULL;
-        (*stack) = newNode;
-    }
-    execFunc_exitStatus = EXIT_SUCCESS;
-    printf("Push successful\n");
-    return;
-
-} /* check line 21*/
+	if (is_valid_int() == 0)
+	{
+		set_op_tok_error(no_int_error(line_number));
+		return;
+	}
+	newNode->n = atoi(all_op_tokens[1]);
+	printf("Pushed %d\n", newNode->n);
+	if (check_mode(*stack) == 0) /* STACK mode insert at the front */
+	{
+		tmp = (*stack)->next;
+		newNode->prev = *stack;
+		newNode->next = tmp;
+		if (tmp)
+			tmp->prev = newNode;
+		(*stack)->next = newNode;
+	}
+	/* else  QUEUE mode insert at the end */
+}
 
 /**
  * is_valid_int: Function to check if a string can be made into a valid integer.
@@ -50,29 +51,37 @@ void push_to_stack(stack_t **stack, unsigned int line_number)
  * Return: 1, if it can be a valid integer
  *              else, 0.
  */
-int is_valid_int(char *value)
+int is_valid_int(void)
 {
-    int i;
+	int i;
 
-    for (i = 0; value[i]; i++)
-    {
-        if (i == 0 && value[i] == '-')
-            continue;
-        if (value[i] < '0' || value[i] > '9')
-            return (0);
-    }
-    return (1);
+	for (i = 0; all_op_tokens[1][i]; i++)
+        {
+                if (i == 0 && all_op_tokens[1][i] == '-')
+                        continue;
+                if (all_op_tokens[1][i] < '0' || all_op_tokens[1][i] > '9')
+                {
+                        return (0);
+                }
+        }
+	return (1);
 }
 
+/**
+ * print_all_stack - a function to print the stack (value)
+ * @stack: double pointer to the head of the list
+ * @line_number: line number 
+ */
 void print_all_stack(stack_t **stack, unsigned int line_number)
 {
-    stack_t *tmp = (*stack);
+	stack_t *temp = *stack;
 
-    (void)line_number;
+	(void) line_number;
 
-    while (tmp != NULL)
-    {
-        printf("%d\n", tmp->n);
-        tmp = tmp->prev;
-    }
+	temp = temp->next;
+	while (temp != NULL)
+	{
+		printf("%d\n", temp->n);
+		temp = temp->next;
+	}
 }

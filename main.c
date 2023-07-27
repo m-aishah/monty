@@ -1,4 +1,9 @@
 #include "monty.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+char **all_op_tokens = NULL;
 
 /**
  * main - Entry point
@@ -8,25 +13,17 @@
  * Return: 0, on success.
  */
 
-int main(int ac, char *av[])
+int main(int ac, char **av)
 {
-    int exit_status;
-    FILE *filepathName;
+	FILE *file_pathname = NULL;
+	int exit_status = EXIT_SUCCESS;
 
-    if (ac != 2)
-    {
-        fprintf(stderr, "USAGE: monty file\n");
-        exit(EXIT_FAILURE);
-    }
-    filepathName = fopen(av[1], "r");
-    if (filepathName == NULL)
-    {
-        fprintf(stderr, "Error: Can't open file %s", av[1]);
-        exit(EXIT_FAILURE);
-    }
-    printf("Working!\n");
-
-    exit_status = run_monty(filepathName);
-    fclose(filepathName);
-    exit(exit_status);
+	if (ac != 2)
+		return (usage_error());
+	file_pathname = fopen(av[1], "r");
+	if (file_pathname == NULL)
+		return (file_open_error(av[1]));
+	exit_status = run_monty(file_pathname);
+	fclose(file_pathname);
+	return (exit_status);
 }

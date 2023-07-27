@@ -1,131 +1,157 @@
 #define _POSIX_C_SOURCE 200809L
 
 #include "monty.h"
-#include <stdio.h>
 #include <string.h>
 
-char **all_Op_Tokens = NULL;
-int execFunc_exitStatus = EXIT_SUCCESS;
+void free_op_tokens(void);
+unsigned int token_arr_len(void);
+int is_empty_line(char *line, char *delims);
+void (*get_op_function(char *opcode))(stack_t**, unsigned int);
+int run_monty(FILE *file_pathname);
 
 /**
- * run_monty: Function to run the bytecodes on each line
- * @filepathName: Path of the file containing bytecodes
- * Return: exit status of the operation -
- * EXIT_SUCCESS on success and EXIT_FAILURE on failure.
+ * free_op_tokens - Function to free all tokens in array of tokens.
  */
-
-int run_monty(FILE *filepathName)
+void free_op_tokens(void)
 {
-    stack_t *stack = NULL;
-    size_t n = 0;
-    int char_Count = 0;
-    unsigned int line_number = 0;
-    int token_Count = 0;
-    int exit_status = EXIT_SUCCESS;
-    char *optoken = NULL;
-    char *lineContent = NULL;
+	size_t i = 0;
 
-    all_Op_Tokens = malloc(1024 * sizeof(char *));
-    stack = malloc(sizeof(stack_t));
-    if (stack == NULL)
-    {
-        fprintf(stderr, "Error: malloc failed\n");
-        return (EXIT_FAILURE);
-    }
-    while ((char_Count = getline(&lineContent, &n, filepathName)) != -1)
-    {
+	if (all_op_tokens == NULL)
+		return;
 
-        line_number++;
+	for (i = 0; all_op_tokens[i]; i++)
+		free(all_op_tokens[i]);
 
-        if (lineContent[char_Count - 1] == '\n')
-            lineContent[char_Count - 1] = '\0';
-
-        optoken = strtok(lineContent, " \t");
-        while (optoken != NULL)
-        {
-
-            all_Op_Tokens[token_Count] = my_strdup(optoken);
-            optoken = strtok(NULL, " \t");
-            token_Count++;
-        }
-        all_Op_Tokens[token_Count] = NULL;
-        if (execute_Opcode(&stack, line_number) == EXIT_FAILURE)
-        {
-            free_Opcode(token_Count);
-            free(lineContent);
-            exit_status = EXIT_FAILURE;
-            break;
-        }
-        free_Opcode(token_Count);
-        free(lineContent);
-        token_Count = 0;
-    }
-    if (char_Count == -1 && errno == ENOMEM)
-    {
-        fprintf(stderr, "Error: malloc failed\n");
-        return (EXIT_FAILURE);
-    }
-
-    free_stack(&stack);
-    return (exit_status);
+	free(all_op_tokens);
 }
 
 /**
- * free_Opcode - Function to free all tokens in array of tokens
- * @all_Op_Tokens - Array of tokens
- * @token_Count - Number of tokens to be freed
+ * token_arr_len - Gets the length of all_op_tokens.
+ *
+ * Return: Length of current all_op_tokens.
  */
-void free_Opcode(int token_Count)
+
+unsigned int token_arr_len(void)
 {
-    int i = 0;
-    for (; i < token_Count; i++)
-        free(all_Op_Tokens[i]);
+	unsigned int toks_len = 0;
+
+	while (all_op_tokens[toks_len])
+		toks_len++;
+	return (toks_len);
 }
 
 /**
- * free_stack - Function to free a stack
- * @stack - Address of stack to be freed
+ * is_empty_line - Checks if a line read from getline only contains delimiters.
+ * @line: A pointer to the line.
+ * @delims: A string of delimiter characters.
+ *
+ * Return: If the line only contains delimiters - 1.
+ *         Otherwise - 0.
  */
-void free_stack(stack_t **stack)
+int is_empty_line(char *line, char *delims)
 {
-    stack_t *tmp = *stack;
+	int i, j;
 
-    while (tmp)
-    {
-        (*stack) = (*stack)->prev;
-        free(tmp);
-        tmp = (*stack);
-    }
+	for (i = 0; line[i]; i++)
+	{
+		for (j = 0; delims[j]; j++)
+		{
+			if (line[i] == delims[j])
+				break;
+		}
+		if (delims[j] == '\0')
+			return (0);
+	}
+
+	return (1);
 }
 
 /**
- * @execute_Opcode - Function to execute the bytecode on a line.
- * @all_Op_Tokens - Array of tokens
- * @line_Count - The line that is currently being executed
- * Return: exit status of the operation -
- * EXIT_SUCCESS on success and EXIT_FAILURE on failure.
+ * get_op_function - Function to match an opcode with its corresponding function.
+ * @opcode: The opcode to match.
+ *
+ * Return: A pointer to the corresponding function.
  */
-int execute_Opcode(stack_t **stack, unsigned int line_number)
+void (*get_op_function(char *opcode))(stack_t**, unsigned int)
 {
-    int i;
+	instruction_t op_and_funcs[] = {
+		{"push", push_to_stack},
+		{"pall", print_all_stack},
+		{NULL, NULL}
+	};
+	int i;
 
-    instruction_t get_Op_Function[] = {
-        {"push", push_to_stack},
-        {"pall", print_all_stack},
-        {NULL, NULL}};
+	for (i = 0; op_and_funcs[i].opcode; i++)
+	{
+		if (strcmp(opcode, op_and_funcs[i].opcode) == 0)
+			return (op_and_funcs[i].f);
+	}
 
-    for (i = 0; i < 3; i++)
-    {
-        if (strcmp(all_Op_Tokens[0], get_Op_Function[i].opcode) == 0)
-        {
-            get_Op_Function[i].f(stack, line_number);
-            break;
-        }
-    }
-    if (i == 3)
-    {
-        fprintf(stderr, "L%d: unknown instruction %s\n", line_number, all_Op_Tokens[0]);
-        return (EXIT_FAILURE);
-    }
-    return (execFunc_exitStatus);
+	return (NULL);
+}
+
+/**
+ * run_monty - Function to run the bytecodes on each line
+ * @file_pathname: Pathname of the file containing bytecodes 
+ *
+ * Return: EXIT_SUCCESS on success, 
+ *		respective error code on failure.
+ */
+int run_monty(FILE *file_pathname)
+{
+	stack_t *stack = NULL;
+	char *line = NULL;
+	size_t len = 0, exit_status = EXIT_SUCCESS;
+	unsigned int line_number = 0, prev_tok_len = 0;
+	void (*op_function)(stack_t**, unsigned int);
+
+	if (init_stack(&stack) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+
+	while (getline(&line, &len, file_pathname) != -1)
+	{
+		line_number++;
+		all_op_tokens = strtow(line, DELIMS);
+		if (all_op_tokens == NULL)
+		{
+			if (is_empty_line(line, DELIMS))
+				continue;
+			free_stack(&stack);
+			return (malloc_error());
+		}
+		else if (all_op_tokens[0][0] == '#')
+		{
+			free_op_tokens();
+			continue;
+		}
+		op_function = get_op_function(all_op_tokens[0]);
+		if (op_function == NULL)
+		{
+			free_stack(&stack);
+			exit_status = unknown_op_error(all_op_tokens[0], line_number);
+			free_op_tokens();
+			break;
+		}
+		prev_tok_len = token_arr_len();
+		op_function(&stack, line_number);
+		if (token_arr_len() != prev_tok_len)
+		{
+			/**if (all_op_tokens && all_op_tokens[prev_tok_len])
+				exit_status = atoi(all_op_tokens[prev_tok_len]);
+			else*/
+				exit_status = EXIT_FAILURE;
+			free_op_tokens();
+			break;
+		}
+		free_op_tokens();
+	}
+	free_stack(&stack);
+
+	if (line && *line == 0)
+	{
+		free(line);
+		return (malloc_error());
+	}
+	free(line);
+	return (exit_status);
 }

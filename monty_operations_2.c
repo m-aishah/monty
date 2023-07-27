@@ -29,3 +29,37 @@ void swap_top_two(stack_t **stack, unsigned int line_number)
         temp->next->prev = temp;
     }
 }
+
+/**
+ * add_top_two - a function to add the top two elements of a stack
+ * @stack: double pointer to the head of the list
+ * @line_number: line number
+ *
+ */
+
+void add_top_two(stack_t **stack, unsigned int line_number)
+{
+    stack_t *temp = (*stack)->next;
+    stack_t sum = NULL;
+
+    if (temp == NULL || temp->next == NULL)
+    {
+        set_op_tok_error(add_error(line_number));
+        return;
+    }
+    sum = temp->n + temp->next->n;
+    temp->next->n = sum;
+    pop_from_stack(stack, unsigned int line_number);
+}
+
+/**
+ * add_top_two - a function to add the top two elements of a stack
+ * @stack: double pointer to the head of the list
+ * @line_number: line number
+ *
+ */
+
+void do_nothing(stack_t **stack, unsigned int line_number)
+{
+    return;
+}

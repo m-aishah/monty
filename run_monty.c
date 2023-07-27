@@ -82,7 +82,13 @@ void (*get_op_function(char *opcode))(stack_t **, unsigned int)
         {"swap", swap_top_two},
         {"add", add_top_two},
         {"nop", do_nothing},
+        {"sub", sub_top_two},
+        {"div", div_top_two},
+        {"mul", mul_top_two},
+        {"mod", mod_top_two},
+        {"pchar", print_top_char},
         {NULL, NULL}};
+
     int i;
 
     for (i = 0; op_and_funcs[i].opcode; i++)

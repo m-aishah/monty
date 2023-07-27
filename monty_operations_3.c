@@ -46,3 +46,28 @@ void mod_top_two(stack_t **stack, unsigned int line_number)
     temp->next->n %= temp->n;
     pop_from_stack(stack, line_number);
 }
+
+/**
+ * print_top_char - a function to print the value (char) at the top of the stack
+ * @stack: double pointer to the head of the list
+ * @line_number: line number
+ */
+void print_top_char(stack_t **stack, unsigned int line_number)
+{
+    stack_t *temp = *stack;
+
+    temp = temp->next;
+
+    if (temp == NULL)
+    {
+        set_op_tok_error(pchar_error_one(line_number));
+        return;
+    }
+    if (temp->n < 0 || temp->n > 127)
+    {
+        set_op_tok_error(pchar_error_two(line_number));
+        return;
+    }
+
+    printf("%c\n", temp->n);
+}

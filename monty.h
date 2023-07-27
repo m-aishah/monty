@@ -59,6 +59,7 @@ void sub_top_two(stack_t **stack, unsigned int line_number);
 void div_top_two(stack_t **stack, unsigned int line_number);
 void mul_top_two(stack_t **stack, unsigned int line_number);
 void mod_top_two(stack_t **stack, unsigned int line_number);
+void print_top_char(stack_t **stack, unsigned int line_number);
 
 char **strtow(char *str, char *delims);
 char *change_int_str(int n);
@@ -74,5 +75,6 @@ int swap_error(unsigned int line_number);
 int add_error(unsigned int line_number);
 int short_stack_errors(unsigned int line_number, char *error);
 int div_error(unsigned int line_number);
-
+int pchar_error_one(unsigned int line_number);
+int pchar_error_two(unsigned int line_number);
 #endif

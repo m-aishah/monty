@@ -86,7 +86,7 @@ void sub_top_two(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * div_top_two - a function to subtract the top element of a stack from the second top
+ * div_top_two - a function to divide the second top element of the stack by the top element of the stack
  * @stack: double pointer to the head of the list
  * @line_number: line number
  *

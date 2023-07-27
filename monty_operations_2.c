@@ -9,8 +9,8 @@
 
 void swap_top_two(stack_t **stack, unsigned int line_number)
 {
-    stack_t *tmp, *temp, *temp2;
-    tmp = NULL;
+    stack_t *temp, *temp2;
+    int val1, val2;
     temp = (*stack)->next;
     temp2 = (*stack)->next->next;
 
@@ -20,10 +20,11 @@ void swap_top_two(stack_t **stack, unsigned int line_number)
         return;
     }
 
-    tmp->n = temp->n;
-    temp->n = temp2->n;
-    temp2->n = tmp->n;
+    val1 = temp->n;
+    val2 = temp2->n;
 
+    temp->n = val2;
+    temp2->n = val1;
     /**
      * temp->next = temp2->next;
         temp->prev = temp 2;

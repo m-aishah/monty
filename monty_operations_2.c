@@ -20,7 +20,7 @@ void swap_top_two(stack_t **stack, unsigned int line_number)
     }
 
     temp->next = temp2->next;
-    temp->prev = temp 2;
+    temp->prev = temp2;
     temp2->next = temp;
     temp2->prev = (*stack);
     (*stack)->next = temp2;

@@ -28,6 +28,6 @@ int pop_error(unsigned int line_number)
 
 int swap_error(unsigned int line_number)
 {
-    printf("L%d: can't swap, stack too short\n");
+    printf("L%d: can't swap, stack too short\n", line_number);
     return (EXIT_FAILURE);
 }

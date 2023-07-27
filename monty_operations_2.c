@@ -9,7 +9,7 @@
 
 void swap_top_two(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp, *temp2;
+    stack_t tmp, *temp, *temp2;
     temp = (*stack)->next;
     temp2 = (*stack)->next->next;
 
@@ -19,15 +19,23 @@ void swap_top_two(stack_t **stack, unsigned int line_number)
         return;
     }
 
-    temp->next = temp2->next;
-    temp->prev = temp 2;
-    temp2->next = temp;
-    temp2->prev = (*stack);
-    (*stack)->next = temp2;
-    if (temp->next != NULL)
-    {
-        temp->next->prev = temp;
-    }
+    tmp = temp->n;
+    temp->n = temp2->n;
+    temp2->n = tmp;
+
+    /**
+     * temp->next = temp2->next;
+        temp->prev = temp 2;
+        temp2->next = temp;
+        temp2->prev = (*stack);
+        (*stack)->next = temp2;
+
+
+        if (temp->next != NULL)
+        {
+            temp->next->prev = temp;
+        }
+    */
 }
 
 /**
@@ -53,13 +61,15 @@ void add_top_two(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * add_top_two - a function to add the top two elements of a stack
- * @stack: double pointer to the head of the list
- * @line_number: line number
- *
+ * do nothing - a function to do nothing
+ * @stack: unused variable
+ * @line_number: unused variable
  */
 
 void do_nothing(stack_t **stack, unsigned int line_number)
 {
+    (void)stack;
+    (void)line_number;
+
     return;
 }

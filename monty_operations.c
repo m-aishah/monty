@@ -32,7 +32,6 @@ void push_to_stack(stack_t **stack, unsigned int line_number)
 		return;
 	}
 	newNode->n = atoi(all_op_tokens[1]);
-	printf("Pushed %d\n", newNode->n);
 	if (check_mode(*stack) == 0) /* STACK mode insert at the front */
 	{
 		tmp = (*stack)->next;

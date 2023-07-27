@@ -136,9 +136,9 @@ int run_monty(FILE *file_pathname)
 		op_function(&stack, line_number);
 		if (token_arr_len() != prev_tok_len)
 		{
-			/**if (all_op_tokens && all_op_tokens[prev_tok_len])
+			if (all_op_tokens && all_op_tokens[prev_tok_len])
 				exit_status = atoi(all_op_tokens[prev_tok_len]);
-			else*/
+			else
 				exit_status = EXIT_FAILURE;
 			free_op_tokens();
 			break;

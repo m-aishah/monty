@@ -10,7 +10,6 @@
 void swap_top_two(stack_t **stack, unsigned int line_number)
 {
     stack_t *temp = NULL, *temp2 = NULL;
-    int val1, val2;
     temp = (*stack)->next;
     temp2 = (*stack)->next->next;
 
@@ -20,14 +19,8 @@ void swap_top_two(stack_t **stack, unsigned int line_number)
         return;
     }
 
-    val1 = temp->n;
-    val2 = temp2->n;
-
-    temp->n = val2;
-    temp2->n = val1;
-    /**
-     * temp->next = temp2->next;
-        temp->prev = temp 2;
+      temp->next = temp2->next;
+        temp->prev = temp2;
         temp2->next = temp;
         temp2->prev = (*stack);
         (*stack)->next = temp2;
@@ -37,7 +30,7 @@ void swap_top_two(stack_t **stack, unsigned int line_number)
         {
             temp->next->prev = temp;
         }
-    */
+    
 }
 
 /**
@@ -50,15 +43,14 @@ void swap_top_two(stack_t **stack, unsigned int line_number)
 void add_top_two(stack_t **stack, unsigned int line_number)
 {
     stack_t *temp = (*stack)->next;
-    int sum = 0;
+
 
     if (temp == NULL || temp->next == NULL)
     {
         set_op_tok_error(add_error(line_number));
         return;
     }
-    sum = temp->n + temp->next->n;
-    temp->next->n = sum;
+    temp->next->n += temp->n;
     pop_from_stack(stack, line_number);
 }
 

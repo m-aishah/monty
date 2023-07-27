@@ -3,6 +3,8 @@
 void push_to_stack(stack_t **stack, unsigned int line_number);
 void print_all_stack(stack_t **stack, unsigned int line_number);
 int is_valid_int();
+void print_top_stack(stack_t **stack, unsigned int line_number);
+
 /**
  * push_to_stack - Function to push an integer to a stack.
  * @stack: A pointer to the top (mode node) of a stack.

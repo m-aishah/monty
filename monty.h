@@ -50,6 +50,7 @@ void set_op_tok_error(int exit_status);
 
 void push_to_stack(stack_t **stack, unsigned int line_number);
 void print_all_stack(stack_t **stack, unsigned int line_number);
+void print_top_stack(stack_t **stack, unsigned int line_number);
 
 char **strtow(char *str, char *delims);
 char *change_int_str(int n);
@@ -59,5 +60,5 @@ int malloc_error(void);
 int file_open_error(char *filename);
 int unknown_op_error(char *opcode, unsigned int line_number);
 int no_int_error(unsigned int line_number);
-
+int pint_error(unsigned int line_number);
 #endif

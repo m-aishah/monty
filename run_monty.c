@@ -33,6 +33,9 @@ int run_monty(FILE *filepathName)
         fprintf(stderr, "Error: malloc failed\n");
         return (EXIT_FAILURE);
     }
+
+	stack->next = NULL;
+	stack->prev = NULL;
     while ((char_Count = getline(&lineContent, &n, filepathName)) != -1)
     {
 
@@ -52,8 +55,16 @@ int run_monty(FILE *filepathName)
 			printf("%d\n", token_Count);
         }
         all_Op_Tokens[token_Count] = NULL;
+		if (execute_Opcode(&stack, line_number) == EXIT_FAILURE)
+        {
+            for (i = 0; i < token_Count; i++)
+				free(all_Op_Tokens[i]);
+			free(lineContent);
+            exit_status = EXIT_FAILURE;
+            break;
+        }
 	}
-	
+	free_stack(&stack);
 	free(stack);
 	for (i = 0; i < token_Count; i++)
 		free(all_Op_Tokens[i]);
@@ -65,15 +76,54 @@ int run_monty(FILE *filepathName)
 
 
 
-/**
- * free_Opcode - Function to free all tokens in array of tokens
- * @all_Op_Tokens - Array of tokens
- * @token_Count - Number of tokens to be freed
 
-void free_Opcode(char *all_Op_Tokens, int token_Count)
+
+/**
+ * @execute_Opcode - Function to execute the bytecode on a line.
+ * @all_Op_Tokens - Array of tokens
+ * @line_Count - The line that is currently being executed
+ * Return: exit status of the operation -
+ * EXIT_SUCCESS on success and EXIT_FAILURE on failure.
+ */
+int execute_Opcode(stack_t **stack, unsigned int line_number)
 {
-    int i = 0;
-    for (; i < token_Count; i++)
-        free(all_Op_Tokens[i]);
+    int i;
+
+    instruction_t get_Op_Function[] = {
+        {"push", push_to_stack},
+        {"pall", print_all_stack},
+        {NULL, NULL}};
+ for (i = 0; i < 3; i++)
+    {
+        if (strcmp(all_Op_Tokens[0], get_Op_Function[i].opcode) == 0)
+        {
+            printf("It's a match\n");
+			get_Op_Function[i].f(stack, line_number);
+			break;
+        }
+    }
+    if (i == 3)
+    {
+        fprintf(stderr, "L%d: unknown instruction %s\n", line_number, all_Op_Tokens[0]);
+        return (EXIT_FAILURE);
+    }
+    return (execFunc_exitStatus);
 }
-*/
+
+
+/**
+ * free_stack - Function to free a stack
+ * @stack - Address of stack to be freed
+ */
+void free_stack(stack_t **stack)
+{
+    stack_t *tmp;
+	tmp = *stack;
+
+    while (tmp)
+    {
+        (*stack) = (*stack)->prev;
+        free(tmp);
+        tmp = (*stack);
+    }
+}

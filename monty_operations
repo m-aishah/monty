@@ -18,7 +18,8 @@ void push_to_stack(stack_t **stack, unsigned int line_number)
         execFunc_exitStatus = EXIT_FAILURE;
         return;
     }
-    if (is_valid_int(all_Op_Tokens[1]) == 0)
+	printf("made it here\n");
+	if (is_valid_int(all_Op_Tokens[1]) == 0)
     {
         fprintf(stderr, "L%d: unknown instruction %s\n", line_number, all_Op_Tokens[0]);
         execFunc_exitStatus = EXIT_FAILURE;
@@ -38,6 +39,7 @@ void push_to_stack(stack_t **stack, unsigned int line_number)
         newNode->next = NULL;
         (*stack) = newNode;
     }
+	printf("push success\n");
     execFunc_exitStatus = EXIT_SUCCESS;
     return;
 

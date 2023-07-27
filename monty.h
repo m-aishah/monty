@@ -40,7 +40,7 @@ extern char **all_Op_Tokens;
 extern int execFunc_exitStatus;
 
 int run_monty(FILE *filepathName);
-void free_Opcode(int token_Count);
+void free_Opcode(char *all_Op_Tokens, int token_Count);
 int execute_Opcode(stack_t **stack, unsigned int line_number);
 void push_to_stack(stack_t **stack, unsigned int line_number);
 void print_all_stack(stack_t **stack, unsigned int line_number);

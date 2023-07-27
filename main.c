@@ -19,13 +19,13 @@ int main(int ac, char *av[])
         exit(EXIT_FAILURE);
     }
     filepathName = fopen(av[1], "r");
-    if (filepathName == NULL)
+	if (filepathName == NULL)
     {
         fprintf(stderr, "Error: Can't open file %s", av[1]);
         exit(EXIT_FAILURE);
     }
-
     exit_status = run_monty(filepathName);
     fclose(filepathName);
+	printf("I'm exiting main\n");
     exit(exit_status);
 }

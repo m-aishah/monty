@@ -92,3 +92,10 @@ void print_top_str(stack_t **stack, unsigned int line_number)
     }
     printf("\n");
 }
+
+/**
+ * rotate_to_top - a function that rotates the stack to the top
+ * @stack: double pointer to the head of the list
+ * @line_number: line number
+ */
+void rotate_to_top(stack_t **stack, unsigned int line_number)

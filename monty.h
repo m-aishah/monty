@@ -51,9 +51,9 @@ void set_op_tok_error(int exit_status);
 void push_to_stack(stack_t **stack, unsigned int line_number);
 void print_all_stack(stack_t **stack, unsigned int line_number);
 void print_top_stack(stack_t **stack, unsigned int line_number);
-void pop_from_stack(stack_t **stack, unsigned int line_number)
+void pop_from_stack(stack_t **stack, unsigned int line_number);
 
-    char **strtow(char *str, char *delims);
+char **strtow(char *str, char *delims);
 char *change_int_str(int n);
 
 int usage_error(void);

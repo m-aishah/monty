@@ -9,7 +9,7 @@
 
 void swap_top_two(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp, *temp2;
+    stack_t *temp = NULL, *temp2 = NULL;
     int val1, val2;
     temp = (*stack)->next;
     temp2 = (*stack)->next->next;
@@ -50,15 +50,15 @@ void swap_top_two(stack_t **stack, unsigned int line_number)
 void add_top_two(stack_t **stack, unsigned int line_number)
 {
     stack_t *temp = (*stack)->next;
-    stack_t *sum = NULL;
+    int sum = 0;
 
     if (temp == NULL || temp->next == NULL)
     {
         set_op_tok_error(add_error(line_number));
         return;
     }
-    sum->n = temp->n + temp->next->n;
-    temp->next->n = sum->n;
+    sum = temp->n + temp->next->n;
+    temp->next->n = sum;
     pop_from_stack(stack, line_number);
 }
 

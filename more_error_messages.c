@@ -26,8 +26,27 @@ int pop_error(unsigned int line_number)
     return (EXIT_FAILURE);
 }
 
+/**
+ * swap_error - prints the error message for stack too short to swap
+ * @line_number: Line number in Monty bytecodes file where error occurred.
+ *
+ * Return: (EXIT_FAILURE) always.
+ */
+
 int swap_error(unsigned int line_number)
 {
     printf("L%d: can't swap, stack too short\n");
+    return (EXIT_FAILURE);
+}
+
+/**
+ * add_error - prints the error message for stack too short to add
+ * @line_number: Line number in Monty bytecodes file where error occurred.
+ *
+ * Return: (EXIT_FAILURE) always.
+ */
+int add_error(unsigned int line_number)
+{
+    printf("L%d: can't add, stack too short\n", line_number);
     return (EXIT_FAILURE);
 }

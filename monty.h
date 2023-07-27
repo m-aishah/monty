@@ -53,6 +53,8 @@ void print_all_stack(stack_t **stack, unsigned int line_number);
 void print_top_stack(stack_t **stack, unsigned int line_number);
 void pop_from_stack(stack_t **stack, unsigned int line_number);
 
+void add_top_two(stack_t **stack, unsigned int line_number);
+
 char **strtow(char *str, char *delims);
 char *change_int_str(int n);
 
@@ -64,5 +66,6 @@ int no_int_error(unsigned int line_number);
 int pint_error(unsigned int line_number);
 int pop_error(unsigned int line_number);
 int swap_error(unsigned int line_number);
+int add_error(unsigned int line_number);
 
 #endif

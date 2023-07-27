@@ -84,3 +84,29 @@ void sub_top_two(stack_t **stack, unsigned int line_number)
     temp->next->n -= temp->n;
     pop_from_stack(stack, line_number);
 }
+
+/**
+ * div_top_two - a function to subtract the top element of a stack from the second top
+ * @stack: double pointer to the head of the list
+ * @line_number: line number
+ *
+ */
+
+void div_top_two(stack_t **stack, unsigned int line_number)
+{
+    stack_t *temp = (*stack)->next;
+
+    if (temp == NULL || temp->next == NULL)
+    {
+        set_op_tok_error(short_stack_errors(line_number, "div"));
+        return;
+    }
+    if (temp->n == 0)
+    {
+        set_op_tok_error(div_error(line_number));
+        return;
+    }
+
+    temp->next->n /= temp->n;
+    pop_from_stack(stack, line_number);
+}

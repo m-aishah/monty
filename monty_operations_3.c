@@ -99,3 +99,23 @@ void print_top_str(stack_t **stack, unsigned int line_number)
  * @line_number: line number
  */
 void rotate_to_top(stack_t **stack, unsigned int line_number)
+{
+    stack_t *temp, *temp2;
+
+    (void)line_number;
+
+    temp = (*stack)->next;
+    temp2 = (*stack)->next;
+
+    if (temp == NULL || temp->next == NULL)
+        return;
+    while (temp2->next != NULL)
+    {
+        temp2 = temp2->next;
+    }
+    (*stack)->next = temp->next;
+    temp->next->prev = (*stack);
+    temp->prev = temp2;
+    temp->next = NULL;
+    temp2->next = temp;
+}

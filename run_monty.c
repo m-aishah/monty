@@ -88,6 +88,7 @@ void (*get_op_function(char *opcode))(stack_t **, unsigned int)
         {"mod", mod_top_two},
         {"pchar", print_top_char},
         {"pstr", print_top_str},
+        {"rotl", rotate_to_top},
         {NULL, NULL}};
 
     int i;

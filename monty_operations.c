@@ -80,7 +80,7 @@ void print_all_stack(stack_t **stack, unsigned int line_number)
     (void)line_number;
 
     temp = temp->next;
-    while (temp != NULL)
+    while (temp)
     {
         printf("%d\n", temp->n);
         temp = temp->next;
@@ -113,10 +113,9 @@ void print_top_stack(stack_t **stack, unsigned int line_number)
 
 void pop_from_stack(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp, *temp2;
+    stack_t *temp = NULL, *temp2 = NULL;
 
-    temp = *stack;
-    temp = temp->next;
+    temp = (*stack) ->next;
     if (temp == NULL)
     {
         set_op_tok_error(pop_error(line_number));
@@ -125,6 +124,6 @@ void pop_from_stack(stack_t **stack, unsigned int line_number)
     temp2 = temp->next;
     free(temp);
     (*stack)->next = temp2;
-    if (temp2 != NULL)
+    if (temp2)
         temp2->prev = (*stack);
 }

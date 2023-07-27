@@ -13,7 +13,7 @@ void set_op_tok_error(int exit_status)
 
 	num_of_token = token_arr_len();
 	new_tokens = malloc(sizeof(char *) * (num_of_token + 2));
-	if (new_tokens == NULL)
+	if (all_op_tokens == NULL)
 	{
 		malloc_error();
 		return;

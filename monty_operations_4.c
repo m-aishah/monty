@@ -43,7 +43,7 @@ void stack_mode(stack_t **stack, unsigned int line_number)
  * @stack: double pointer to the head of the list
  * @line_number: line number
  */
-void queue_mode(stack_t **stack, unsigned int line number)
+void queue_mode(stack_t **stack, unsigned int line_number)
 {
     (void)line_number;
     (*stack)->n = 1;

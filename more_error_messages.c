@@ -35,9 +35,10 @@ int pop_error(unsigned int line_number)
 
 int swap_error(unsigned int line_number)
 {
-    printf("L%d: can't swap, stack too short\n");
+    printf("L%d: can't swap, stack too short\n", line_number);
     return (EXIT_FAILURE);
 }
+<<<<<<< HEAD
 
 /**
  * add_error - prints the error message for stack too short to add
@@ -50,3 +51,5 @@ int add_error(unsigned int line_number)
     printf("L%d: can't add, stack too short\n", line_number);
     return (EXIT_FAILURE);
 }
+=======
+>>>>>>> 04b5f437903b8aa156fcdd543a0f4e26b0740a52

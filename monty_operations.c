@@ -43,6 +43,15 @@ void push_to_stack(stack_t **stack, unsigned int line_number)
             tmp->prev = newNode;
         (*stack)->next = newNode;
     }
+    else
+    {
+        tmp = *stack;
+        while (tmp->next != NULL)
+            tmp = tmp->next;
+        tmp->next = newNode;
+        newNode->prev = tmp;
+        newNode->next = NULL;
+    }
     /* else  QUEUE mode insert at the end */
 }
 
@@ -115,7 +124,7 @@ void pop_from_stack(stack_t **stack, unsigned int line_number)
 {
     stack_t *temp = NULL, *temp2 = NULL;
 
-    temp = (*stack) ->next;
+    temp = (*stack)->next;
     if (temp == NULL)
     {
         set_op_tok_error(pop_error(line_number));

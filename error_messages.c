@@ -50,7 +50,7 @@ int file_open_error(char *filename)
 int unknown_op_error(char *opcode, unsigned int line_number)
 {
 	fprintf(stderr, "L%u: unknown instruction %s\n",
-		line_number, opcode);
+			line_number, opcode);
 	return (EXIT_FAILURE);
 }
 

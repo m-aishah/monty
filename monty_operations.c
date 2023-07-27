@@ -104,3 +104,27 @@ void print_top_stack(stack_t **stack, unsigned int line_number)
     }
     printf("%d\n", temp->n);
 }
+
+/**
+ * pop_top_stack - a function to pop the value at the top of the stack
+ * @stack: double pointer to the head of the list
+ * @line_number: line number
+ */
+
+void pop_from_stack(stack_t **stack, unsigned int line_number)
+{
+    stack_t *temp, *temp2;
+
+    temp = *stack;
+    temp = temp->next;
+    if (temp == NULL)
+    {
+        set_op_tok_error(pop_error(line_number));
+        return;
+    }
+    temp2 = temp->next;
+    free(temp);
+    (*stack)->next = temp2;
+    if (temp2 != NULL)
+        temp2->prev = (*stack);
+}

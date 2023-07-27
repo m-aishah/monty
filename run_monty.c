@@ -78,6 +78,7 @@ void (*get_op_function(char *opcode))(stack_t **, unsigned int)
         {"push", push_to_stack},
         {"pall", print_all_stack},
         {"pint", print_top_stack},
+        {"pop", pop_from_stack},
         {NULL, NULL}};
     int i;
 

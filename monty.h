@@ -63,6 +63,8 @@ void print_top_char(stack_t **stack, unsigned int line_number);
 void print_top_str(stack_t **stack, unsigned int line_number);
 void rotate_to_top(stack_t **stack, unsigned int line_number);
 void rotate_to_bottom(stack_t **stack, unsigned int line_number);
+void stack_mode(stack_t **stack, unsigned int line_number);
+void stack_mode(stack_t **stack, unsigned int line number);
 
 char **strtow(char *str, char *delims);
 char *change_int_str(int n);

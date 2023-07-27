@@ -90,6 +90,8 @@ void (*get_op_function(char *opcode))(stack_t **, unsigned int)
         {"pstr", print_top_str},
         {"rotl", rotate_to_top},
         {"rotr", rotate_to_bottom},
+        {"stack", stack_mode},
+        {"queue", queue_mode},
         {NULL, NULL}};
 
     int i;

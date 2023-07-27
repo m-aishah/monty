@@ -60,6 +60,7 @@ void div_top_two(stack_t **stack, unsigned int line_number);
 void mul_top_two(stack_t **stack, unsigned int line_number);
 void mod_top_two(stack_t **stack, unsigned int line_number);
 void print_top_char(stack_t **stack, unsigned int line_number);
+void print_top_str(stack_t **stack, unsigned int line_number);
 
 char **strtow(char *str, char *delims);
 char *change_int_str(int n);

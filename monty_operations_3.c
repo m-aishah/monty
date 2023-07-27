@@ -71,3 +71,24 @@ void print_top_char(stack_t **stack, unsigned int line_number)
 
     printf("%c\n", temp->n);
 }
+
+/**
+ * print_top_str - a function to print the string starting at the top of the stack
+ * @stack: double pointer to the head of the list
+ * @line_number: line number
+ */
+void print_top_str(stack_t **stack, unsigned int line_number)
+{
+    stack_t *temp;
+
+    (void)line_number;
+
+    temp = (*stack)->next;
+
+    while (temp != NULL && temp->n != 0 && (temp->n > 0 && temp->n <= 127))
+    {
+        printf("%c", temp->n);
+        temp = temp->next;
+    }
+    printf("\n");
+}

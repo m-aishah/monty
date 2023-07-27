@@ -87,6 +87,7 @@ void (*get_op_function(char *opcode))(stack_t **, unsigned int)
         {"mul", mul_top_two},
         {"mod", mod_top_two},
         {"pchar", print_top_char},
+        {"pstr", print_top_str},
         {NULL, NULL}};
 
     int i;

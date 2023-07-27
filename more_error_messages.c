@@ -50,3 +50,15 @@ int add_error(unsigned int line_number)
     fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
     return (EXIT_FAILURE);
 }
+
+/**
+ * short_stack_errors - prints the error message for different functions
+ * @line_number: Line number in Monty bytecodes file where error occurred.
+ *
+ * Return: (EXIT_FAILURE) always.
+ */
+int short_stack_errors(unsigned int line_number, char *error)
+{
+    fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, error);
+    return (EXIT_FAILURE);
+}

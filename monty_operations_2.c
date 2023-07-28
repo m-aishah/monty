@@ -21,11 +21,14 @@ void swap_top_two(stack_t **stack, unsigned int line_number)
 
     temp->next = temp2->next;
     temp->prev = temp2;
-    if(temp2->next)
-	    temp2->next->prev = temp;
     temp2->next = temp;
-    (*stack)->next = temp;
+    temp2->prev = (*stack);
+    (*stack)->next = temp2;
 
+    if (temp->next != NULL)
+    {
+        temp->next->prev = temp;
+    }
 }
 
 /**

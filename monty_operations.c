@@ -57,25 +57,25 @@ void push_to_stack(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * is_valid_int: Function to check if a string can be made into a valid integer.
- * @value: The string in question.
- * Return: 1, if it can be a valid integer
- *              else, 0.
+ * is_valid_int - Function to check if a string can
+ * be made into a valid integer.
+ * Return: 1, if it can be a valid integer, else 0.
  */
+
 int is_valid_int(void)
 {
-    int i;
+	int i;
 
-    for (i = 0; all_op_tokens[1][i]; i++)
-    {
-        if (i == 0 && all_op_tokens[1][i] == '-')
-            continue;
-        if (all_op_tokens[1][i] < '0' || all_op_tokens[1][i] > '9')
-        {
-            return (0);
-        }
-    }
-    return (1);
+	for (i = 0; all_op_tokens[1][i]; i++)
+	{
+		if (i == 0 && all_op_tokens[1][i] == '-')
+			continue;
+		if (all_op_tokens[1][i] < '0' || all_op_tokens[1][i] > '9')
+		{
+			return (0);
+		}
+	}
+	return (1);
 }
 
 /**
@@ -85,16 +85,16 @@ int is_valid_int(void)
  */
 void print_all_stack(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp = *stack;
+	stack_t *temp = *stack;
 
-    (void)line_number;
+	(void)line_number;
 
-    temp = temp->next;
-    while (temp)
-    {
-        printf("%d\n", temp->n);
-        temp = temp->next;
-    }
+	temp = temp->next;
+	while (temp)
+	{
+		printf("%d\n", temp->n);
+		temp = temp->next;
+	}
 }
 
 /**
@@ -104,36 +104,36 @@ void print_all_stack(stack_t **stack, unsigned int line_number)
  */
 void print_top_stack(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp = *stack;
+	stack_t *temp = *stack;
 
-    temp = temp->next;
-    if (temp == NULL)
-    {
-        set_op_tok_error(pint_error(line_number));
-        return;
-    }
-    printf("%d\n", temp->n);
+	temp = temp->next;
+	if (temp == NULL)
+	{
+		set_op_tok_error(pint_error(line_number));
+		return;
+	}
+	printf("%d\n", temp->n);
 }
 
 /**
- * pop_top_stack - a function to pop the value at the top of the stack
+ * pop_from_stack - a function to pop the value at the top of the stack
  * @stack: double pointer to the head of the list
  * @line_number: line number
  */
 
 void pop_from_stack(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp = NULL, *temp2 = NULL;
+	stack_t *temp = NULL, *temp2 = NULL;
 
-    temp = (*stack)->next;
-    if (temp == NULL)
-    {
-        set_op_tok_error(pop_error(line_number));
-        return;
-    }
-    temp2 = temp->next;
-    free(temp);
-    (*stack)->next = temp2;
-    if (temp2)
-        temp2->prev = (*stack);
+	temp = (*stack)->next;
+	if (temp == NULL)
+	{
+		set_op_tok_error(pop_error(line_number));
+		return;
+	}
+	temp2 = temp->next;
+	free(temp);
+	(*stack)->next = temp2;
+	if (temp2)
+		temp2->prev = (*stack);
 }

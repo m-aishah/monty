@@ -9,15 +9,15 @@
 
 void mul_top_two(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp = (*stack)->next;
+	stack_t *temp = (*stack)->next;
 
-    if (temp == NULL || temp->next == NULL)
-    {
-        set_op_tok_error(short_stack_errors(line_number, "mul"));
-        return;
-    }
-    temp->next->n *= temp->n;
-    pop_from_stack(stack, line_number);
+	if (temp == NULL || temp->next == NULL)
+	{
+		set_op_tok_error(short_stack_errors(line_number, "mul"));
+		return;
+	}
+	temp->next->n *= temp->n;
+	pop_from_stack(stack, line_number);
 }
 
 /**
@@ -30,67 +30,70 @@ void mul_top_two(stack_t **stack, unsigned int line_number)
 
 void mod_top_two(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp = (*stack)->next;
+	stack_t *temp = (*stack)->next;
 
-    if (temp == NULL || temp->next == NULL)
-    {
-        set_op_tok_error(short_stack_errors(line_number, "mod"));
-        return;
-    }
-    if (temp->n == 0)
-    {
-        set_op_tok_error(div_error(line_number));
-        return;
-    }
+	if (temp == NULL || temp->next == NULL)
+	{
+		set_op_tok_error(short_stack_errors(line_number, "mod"));
+		return;
+	}
+	if (temp->n == 0)
+	{
+		set_op_tok_error(div_error(line_number));
+		return;
+	}
 
-    temp->next->n %= temp->n;
-    pop_from_stack(stack, line_number);
+	temp->next->n %= temp->n;
+	pop_from_stack(stack, line_number);
 }
 
 /**
- * print_top_char - a function to print the value (char) at the top of the stack
+ * print_top_char - Function to print the value (char)
+ *		at the top of the stack
  * @stack: double pointer to the head of the list
  * @line_number: line number
  */
+
 void print_top_char(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp = *stack;
+	stack_t *temp = *stack;
 
-    temp = temp->next;
+	temp = temp->next;
 
-    if (temp == NULL)
-    {
-        set_op_tok_error(pchar_error_one(line_number));
-        return;
-    }
-    if (temp->n < 0 || temp->n > 127)
-    {
-        set_op_tok_error(pchar_error_two(line_number));
-        return;
-    }
+	if (temp == NULL)
+	{
+		set_op_tok_error(pchar_error_one(line_number));
+		return;
+	}
+	if (temp->n < 0 || temp->n > 127)
+	{
+		set_op_tok_error(pchar_error_two(line_number));
+		return;
+	}
 
-    printf("%c\n", temp->n);
+	printf("%c\n", temp->n);
 }
 
 /**
- * print_top_str - a function to print the string starting at the top of the stack
+ * print_top_str - Function to print the stringe
+ *		starting at the top of the stack
  * @stack: double pointer to the head of the list
  * @line_number: line number
  */
 void print_top_str(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp;
+	stack_t *temp;
 
-    (void)line_number;
+	(void)line_number;
 
-    temp = (*stack)->next;
+	temp = (*stack)->next;
 
-    while (temp != NULL && temp->n != 0 && (temp->n > 0 && temp->n <= 127))
-    {
-        printf("%c", temp->n);
-        temp = temp->next;
-    }
-    printf("\n");
+	while (temp != NULL && temp->n != 0 && (temp->n > 0 && temp->n <= 127))
+	{
+		printf("%c", temp->n);
+		temp = temp->next;
+	}
+	printf("\n");
 }
 
 /**
@@ -100,22 +103,22 @@ void print_top_str(stack_t **stack, unsigned int line_number)
  */
 void rotate_to_top(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp, *temp2;
+	stack_t *temp, *temp2;
 
-    (void)line_number;
+	(void)line_number;
 
-    temp = (*stack)->next;
-    temp2 = (*stack)->next;
+	temp = (*stack)->next;
+	temp2 = (*stack)->next;
 
-    if (temp == NULL || temp->next == NULL)
-        return;
-    while (temp2->next != NULL)
-    {
-        temp2 = temp2->next;
-    }
-    (*stack)->next = temp->next;
-    temp->next->prev = (*stack);
-    temp->prev = temp2;
-    temp->next = NULL;
-    temp2->next = temp;
+	if (temp == NULL || temp->next == NULL)
+		return;
+	while (temp2->next != NULL)
+	{
+		temp2 = temp2->next;
+	}
+	(*stack)->next = temp->next;
+	temp->next->prev = (*stack);
+	temp->prev = temp2;
+	temp->next = NULL;
+	temp2->next = temp;
 }

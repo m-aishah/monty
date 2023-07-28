@@ -7,24 +7,24 @@
  */
 void rotate_to_bottom(stack_t **stack, unsigned int line_number)
 {
-    stack_t *temp, *temp2;
+	stack_t *temp, *temp2;
 
-    (void)line_number;
+	(void)line_number;
 
-    temp = (*stack)->next;
-    temp2 = (*stack)->next;
+	temp = (*stack)->next;
+	temp2 = (*stack)->next;
 
-    if (temp == NULL || temp->next == NULL)
-        return;
-    while (temp2->next != NULL)
-    {
-        temp2 = temp2->next;
-    }
-    temp2->prev->next = NULL;
-    temp2->prev = (*stack);
-    temp2->next = temp;
-    (*stack)->next = temp2;
-    temp->prev = temp2;
+	if (temp == NULL || temp->next == NULL)
+		return;
+	while (temp2->next != NULL)
+	{
+		temp2 = temp2->next;
+	}
+	temp2->prev->next = NULL;
+	temp2->prev = (*stack);
+	temp2->next = temp;
+	(*stack)->next = temp2;
+	temp->prev = temp2;
 }
 
 /**
@@ -34,8 +34,8 @@ void rotate_to_bottom(stack_t **stack, unsigned int line_number)
  */
 void stack_mode(stack_t **stack, unsigned int line_number)
 {
-    (void)line_number;
-    (*stack)->n = 0;
+	(void)line_number;
+	(*stack)->n = 0;
 }
 
 /**
@@ -45,6 +45,6 @@ void stack_mode(stack_t **stack, unsigned int line_number)
  */
 void queue_mode(stack_t **stack, unsigned int line_number)
 {
-    (void)line_number;
-    (*stack)->n = 1;
+	(void)line_number;
+	(*stack)->n = 1;
 }

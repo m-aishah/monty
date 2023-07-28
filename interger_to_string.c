@@ -17,22 +17,22 @@ char *change_int_str(int num)
 	unsigned int temp;
 	int length = 0;
 	long num_l = 0;
-	char *return_string;
+	char *ret_string;
 
 	temp = _abs(num);
 	length = get_numbase_len(temp, 10);
 
 	if (num < 0 || num_l < 0)
 		length++;
-	return_string = malloc(length + 1);
-	if (!return_string)
+	ret_string = malloc(length + 1);
+	if (!ret_string)
 		return (NULL);
 
-	fill_numbase_buff(temp, 10, return_string, length);
+	fill_numbase_buff(temp, 10, ret_string, length);
 	if (num < 0 || num_l < 0)
-		return_string[0] = '-';
+		ret_string[0] = '-';
 
-	return (return_string);
+	return (ret_string);
 }
 
 /**

@@ -1,4 +1,4 @@
-#define _POSIX_C_SOURCE 200809L
+#define _POSIX_C_SOURCE 200809L /* Enable POSIX features (including getline) */
 
 #include "monty.h"
 #include <string.h>
@@ -57,7 +57,7 @@ int is_empty_line(char *line, char *delims)
 		for (j = 0; delims[j]; j++)
 		{
 			if (line[i] == delims[j])
-			break;
+				break;
 		}
 		if (delims[j] == '\0')
 			return (0);

@@ -1,12 +1,10 @@
 #include "monty.h"
 
 /**
- * mul_top_two - a function to mul the top two elements of a stack
- * @stack: double pointer to the head of the list
- * @line_number: line number
- *
+ * mul_top_two - multiplies the top two elements of a stack.
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the mul opcode was called from.
  */
-
 void mul_top_two(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = (*stack)->next;
@@ -21,13 +19,11 @@ void mul_top_two(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * mod_top_two - a function to compute the rest of the division of the
+ * mod_top_two - computes the remainder from the division of the
  * second top element of the stack by the top element of the stack.
- * @stack: double pointer to the head of the list
- * @line_number: line number
- *
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the mod opcode was called from.
  */
-
 void mod_top_two(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = (*stack)->next;
@@ -48,12 +44,10 @@ void mod_top_two(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * print_top_char - Function to print the value (char)
- *		at the top of the stack
- * @stack: double pointer to the head of the list
- * @line_number: line number
+ * print_top_char - prints the value (char) at the top of the stack.
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the opcode was called from.
  */
-
 void print_top_char(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
@@ -75,10 +69,10 @@ void print_top_char(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * print_top_str - Function to print the stringe
- *		starting at the top of the stack
- * @stack: double pointer to the head of the list
- * @line_number: line number
+ * print_top_str - prints the strings
+ *		starting at the top of the stack.
+ * @stack: Double pointer to the head of the list
+ * @line_number: The line the opcode was called from.
  */
 void print_top_str(stack_t **stack, unsigned int line_number)
 {
@@ -97,9 +91,9 @@ void print_top_str(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * rotate_to_top - a function that rotates the stack to the top
- * @stack: double pointer to the head of the list
- * @line_number: line number
+ * rotate_to_top - rotates the stack to the top
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the opcode was called from.
  */
 void rotate_to_top(stack_t **stack, unsigned int line_number)
 {

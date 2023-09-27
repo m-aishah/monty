@@ -6,13 +6,12 @@
 char **all_op_tokens = NULL;
 
 /**
- * main - Entry point
- * @ac: The number of arguments used to execute the program
- * @av: An array of strings (arguments used to run the program)
+ * main - Entry point.
+ * @ac: The number of arguments used to execute the program.
+ * @av: An array of strings (arguments used to run the program).
  *
  * Return: 0, on success.
  */
-
 int main(int ac, char **av)
 {
 	FILE *file_pathname = NULL;

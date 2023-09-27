@@ -6,10 +6,9 @@ int is_valid_int(void);
 void print_top_stack(stack_t **stack, unsigned int line_number);
 
 /**
- * push_to_stack - Function to push an integer to a stack.
+ * push_to_stack - pushes an integer to a stack.
  * @stack: A pointer to the top (mode node) of a stack.
- * @line_number: The number of the line containing the push
- * code in the bytecode file.
+ * @line_number: The line the push opcode was called from.
  */
 void push_to_stack(stack_t **stack, unsigned int line_number)
 {
@@ -41,14 +40,14 @@ void push_to_stack(stack_t **stack, unsigned int line_number)
 		newNode->prev = *stack;
 		newNode->next = tmp;
 		if (tmp)
-		tmp->prev = newNode;
+			tmp->prev = newNode;
 		(*stack)->next = newNode;
 	}
 	else
 	{
 		tmp = *stack;
 		while (tmp->next != NULL)
-		tmp = tmp->next;
+			tmp = tmp->next;
 		tmp->next = newNode;
 		newNode->prev = tmp;
 		newNode->next = NULL;
@@ -57,11 +56,11 @@ void push_to_stack(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * is_valid_int - Function to check if a string can
- * be made into a valid integer.
- * Return: 1, if it can be a valid integer, else 0.
+ * is_valid_int - checks if a string can
+ *					be made into a valid integer.
+ * Return: 1, if it can be a valid integer
+ * 			else 0.
  */
-
 int is_valid_int(void)
 {
 	int i;
@@ -79,9 +78,9 @@ int is_valid_int(void)
 }
 
 /**
- * print_all_stack - a function to print the stack (value)
- * @stack: double pointer to the head of the list
- * @line_number: line number
+ * print_all_stack - prints the stack (value).
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the opcode was called from.
  */
 void print_all_stack(stack_t **stack, unsigned int line_number)
 {
@@ -98,9 +97,9 @@ void print_all_stack(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * print_top_stack - a function to print the value at the top of the stack
- * @stack: double pointer to the head of the list
- * @line_number: line number
+ * print_top_stack - prints the value at the top of the stack.
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the opcode was called from.
  */
 void print_top_stack(stack_t **stack, unsigned int line_number)
 {
@@ -116,9 +115,9 @@ void print_top_stack(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pop_from_stack - a function to pop the value at the top of the stack
- * @stack: double pointer to the head of the list
- * @line_number: line number
+ * pop_from_stack - pops the value at the top of the stack.
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the pop opcode was called from.
  */
 
 void pop_from_stack(stack_t **stack, unsigned int line_number)

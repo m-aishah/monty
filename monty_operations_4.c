@@ -1,9 +1,9 @@
 #include "monty.h"
 
 /**
- * rotate_to_bottom - a function that rotates the stack to the bottom
- * @stack: double pointer to the head of the list
- * @line_number: line number
+ * rotate_to_bottom - rotates the stack to the bottom.
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the opcode was called from.
  */
 void rotate_to_bottom(stack_t **stack, unsigned int line_number)
 {
@@ -28,9 +28,9 @@ void rotate_to_bottom(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * stack_mode - a function to put the doubly linked list in stack mode
- * @stack: double pointer to the head of the list
- * @line_number: line number
+ * stack_mode - a function to put the doubly linked list in stack mode.
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the opcode was called from.
  */
 void stack_mode(stack_t **stack, unsigned int line_number)
 {
@@ -39,9 +39,9 @@ void stack_mode(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * queue_mode - a function to put the doubly linked list in queue mode
- * @stack: double pointer to the head of the list
- * @line_number: line number
+ * queue_mode - a function to put the doubly linked list in queue mode.
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the opcode was called from.
  */
 void queue_mode(stack_t **stack, unsigned int line_number)
 {

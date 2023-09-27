@@ -1,12 +1,11 @@
 #include "monty.h"
 
 /**
- * swap_top_two - a function to swap the top two elements of a stack
- * @stack: double pointer to the head of the list
- * @line_number: line number
+ * swap_top_two - swaps the top two elements of a stack.
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the swap opcode was called from.
  *
  */
-
 void swap_top_two(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = NULL, *temp2 = NULL;
@@ -33,12 +32,10 @@ void swap_top_two(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * add_top_two - a function to add the top two elements of a stack
- * @stack: double pointer to the head of the list
- * @line_number: line number
- *
+ * add_top_two - a function to add the top two elements of a stack.
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the add opcode was called from.
  */
-
 void add_top_two(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = (*stack)->next;
@@ -53,26 +50,22 @@ void add_top_two(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * do_nothing - a function to do nothing
- * @stack: unused variable
- * @line_number: unused variable
+ * do_nothing - Does nothing.
+ * @stack: Unused variable.
+ * @line_number: Unused variable.
  */
-
 void do_nothing(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
-
 }
 
 /**
- * sub_top_two - a function to subtract the
- * top element of a stack from the second top
- * @stack: double pointer to the head of the list
- * @line_number: line number
+ * sub_top_two - subtracts the top element of a stack from the second top.
+ * @stack: Double pointer to the head of the list
+ * @line_number: The line the sub opcode was called from.
  *
  */
-
 void sub_top_two(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = (*stack)->next;
@@ -87,11 +80,9 @@ void sub_top_two(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * div_top_two - a function to divide the second top element
- * of the stack by the top element of the stack
- * @stack: double pointer to the head of the list
- * @line_number: line number
- *
+ * div_top_two - divides the second top element of the stack by the top element of the stack.
+ * @stack: Double pointer to the head of the list.
+ * @line_number: The line the div opcode was called from.
  */
 
 void div_top_two(stack_t **stack, unsigned int line_number)

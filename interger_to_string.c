@@ -4,13 +4,14 @@ char *change_int_str(int num);
 unsigned int _abs(int);
 int get_numbase_len(unsigned int num, unsigned int base);
 void fill_numbase_buff(unsigned int num, unsigned int base,
-		       char *buff, int buff_size);
+					   char *buff, int buff_size);
 
 /**
- * change_int_str - gets a character pointer to new string containing int
- * @num: number to convert to string
+ * change_int_str - gets a character pointer to new string containing int.
+ * @num: Number to be converted to string
  *
- * Return: character pointer to newly created string. NULL if malloc fails.
+ * Return: On Success, character pointer to newly created string,
+ * 						NULL if malloc fails.
  */
 char *change_int_str(int num)
 {
@@ -36,10 +37,10 @@ char *change_int_str(int num)
 }
 
 /**
- * _abs - gets the absolute value of an integer
- * @i: integer to get absolute value of
+ * _abs - gets the absolute value of an integer.
+ * @i: The integer to get absolute value of.
  *
- * Return: unsigned integer abs rep of i
+ * Return: Unsigned integer abs representation of @i.
  */
 unsigned int _abs(int i)
 {
@@ -49,11 +50,11 @@ unsigned int _abs(int i)
 }
 
 /**
- * get_numbase_len - gets length of buffer needed for an unsigned int
- * @num: number to get length needed for
- * @base: base of number representation used by buffer
+ * get_numbase_len - gets length of buffer needed for an unsigned int.
+ * @num: Number to get length needed for.
+ * @base: Base of number representation used by buffer.
  *
- * Return: integer containing length of buffer needed (doesn't contain null bt)
+ * Return: Integer containing length of buffer needed (excluding null bytecode).
  */
 int get_numbase_len(unsigned int num, unsigned int base)
 {
@@ -68,16 +69,16 @@ int get_numbase_len(unsigned int num, unsigned int base)
 }
 
 /**
- * fill_numbase_buff - fills buffer with correct numbers up to base 36
- * @num: number to convert to string given base
- * @base: base of number used in conversion, only works up to base 36
- * @buff: buffer to fill with result of conversion
- * @buff_size: size of buffer in bytes
+ * fill_numbase_buff - fills buffer with correct numbers up to base 36.
+ * @num: Number to convert to string given base.
+ * @base: Base of number used in conversion, only works up to base 36.
+ * @buff: Buffer to fill with result of conversion.
+ * @buff_size: The size of buffer in bytes.
  *
  * Return: always void.
  */
 void fill_numbase_buff(unsigned int num, unsigned int base,
-			char *buff, int buff_size)
+					   char *buff, int buff_size)
 {
 	int rem, i = buff_size - 1;
 
@@ -85,7 +86,7 @@ void fill_numbase_buff(unsigned int num, unsigned int base,
 	while (i >= 0)
 	{
 		rem = num % base;
-		if (rem > 9) /* return lowercase ascii val representation */
+		if (rem > 9)			/* return lowercase ascii val representation */
 			buff[i] = rem + 87; /* 10 will be a, 11 = b, ... */
 		else
 			buff[i] = rem + '0';

@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * set_op_tok_error - Sets last element of all_op_tokens to be an exit status.
+ * set_op_tok_error - sets last element of all_op_tokens to be an exit status.
  * @exit_status: Integer to store as a string in all_op_tokens.
  */
 void set_op_tok_error(int exit_status)

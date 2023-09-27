@@ -25,7 +25,7 @@ void free_stack(stack_t **stack)
 /**
  * init_stack - Initializes a stack_t stack with beginning
  *              stack and ending queue nodes.
- * @stack: A pointer to an unitialized stack_t stack.
+ * @stack: A pointer to an uninitialized stack_t stack.
  *
  * Return: If an error occurs - EXIT_FAILURE.
  *         Otherwise - EXIT_SUCCESS.

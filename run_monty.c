@@ -10,7 +10,7 @@ void (*get_op_function(char *opcode))(stack_t **, unsigned int);
 int run_monty(FILE *file_pathname);
 
 /**
- * free_op_tokens - Function to free all tokens in array of tokens.
+ * free_op_tokens - frees all tokens in array of tokens.
  */
 void free_op_tokens(void)
 {
@@ -26,11 +26,10 @@ void free_op_tokens(void)
 }
 
 /**
- * token_arr_len - Gets the length of all_op_tokens.
+ * token_arr_len - gets the length of all_op_tokens.
  *
  * Return: Length of current all_op_tokens.
  */
-
 unsigned int token_arr_len(void)
 {
 	unsigned int toks_len = 0;
@@ -41,7 +40,7 @@ unsigned int token_arr_len(void)
 }
 
 /**
- * is_empty_line - Checks if a line read from getline only contains delimiters.
+ * is_empty_line - checks if a line read from getline only contains delimiters.
  * @line: A pointer to the line.
  * @delims: A string of delimiter characters.
  *
@@ -67,8 +66,7 @@ int is_empty_line(char *line, char *delims)
 }
 
 /**
- * get_op_function - Function to match an opcodee
- *		with its corresponding function.
+ * get_op_function - matches an opcodes	with its corresponding function.
  * @opcode: The opcode to match.
  *
  * Return: A pointer to the corresponding function.
@@ -107,8 +105,8 @@ void (*get_op_function(char *opcode))(stack_t **, unsigned int)
 }
 
 /**
- * run_monty - Function to run the bytecodes on each line
- * @file_pathname: Pathname of the file containing bytecodes
+ * run_monty - runs the bytecode on each line.
+ * @file_pathname: Pathname of the file containing bytecode.
  *
  * Return: EXIT_SUCCESS on success,
  *		respective error code on failure.

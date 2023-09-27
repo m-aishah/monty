@@ -39,15 +39,21 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/* Stack set-up functions */
 void free_stack(stack_t **stack);
 int init_stack(stack_t **stack);
 int check_mode(stack_t *stack);
 
+int run_monty(FILE *file_pathname);
+
+/* Helper functions. */
 void free_op_tokens(void);
 unsigned int token_arr_len(void);
-int run_monty(FILE *file_pathname);
-void set_op_tok_error(int exit_status);
 
+char **strtow(char *str, char *delims);
+char *change_int_str(int n);
+
+/*Opcodes*/
 void push_to_stack(stack_t **stack, unsigned int line_number);
 void print_all_stack(stack_t **stack, unsigned int line_number);
 void print_top_stack(stack_t **stack, unsigned int line_number);
@@ -66,8 +72,8 @@ void rotate_to_bottom(stack_t **stack, unsigned int line_number);
 void stack_mode(stack_t **stack, unsigned int line_number);
 void queue_mode(stack_t **stack, unsigned int line_number);
 
-char **strtow(char *str, char *delims);
-char *change_int_str(int n);
+/*Error functions*/
+void set_op_tok_error(int exit_status);
 
 int usage_error(void);
 int malloc_error(void);
@@ -82,4 +88,5 @@ int short_stack_errors(unsigned int line_number, char *error);
 int div_error(unsigned int line_number);
 int pchar_error_one(unsigned int line_number);
 int pchar_error_two(unsigned int line_number);
+
 #endif

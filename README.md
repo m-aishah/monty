@@ -3,6 +3,7 @@
 <p align="center">
   <img src="monty_image.png" alt="Project Logo">
 </p>
+
 # Table of Contents
 
 1. [Table of Contents](#table-of-contents)

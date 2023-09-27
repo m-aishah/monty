@@ -1,5 +1,8 @@
 # C - Stacks, Queues - LIFO, FIFO (Monty Interpreter
 
+<p align="center">
+  <img src="monty_image.png" alt="Project Logo">
+</p>
 # Table of Contents
 
 1. [Table of Contents](#table-of-contents)
@@ -47,3 +50,47 @@ cd monty
 ```
 
 3. Compile the code using the provided compilation command:
+
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=c89 *.c -o monty
+```
+
+4. Execute Monty scripts by running the `monty` program with the path to your Monty ByteCode file as an argument (You can use the scripts in the ./bytecodes directory):
+
+```bash
+./monty your_script.m
+```
+
+## Main Operations (Opcodes)
+
+- **push, pall**: Pushes elements onto the stack and prints stack values.
+- **pint**: Prints the value at the top of the stack.
+- **pop**: Removes the top element of the stack.
+- **swap**: Swaps the top two elements of the stack.
+- **add**: Adds the top two elements of the stack.
+- **nop**: Does nothing.
+- **sub**: Subtracts the top element from the second top element of the stack.
+- **div**: Divides the second top element by the top element of the stack.
+- **mul**: Multiplies the second top element by the top element of the stack.
+- **mod**: Computes the remainder of division between the second top element and the top element of the stack.
+- **comments**: Treats lines starting with # as comments.
+- **pchar**: Prints the character at the top of the stack.
+- **pstr**: Prints the string starting at the top of the stack.
+- **rotl**: Rotates the stack to the top.
+- **rotr**: Rotates the stack to the bottom.
+- **stack, queue**: Sets the format of the data to either stack (LIFO) or queue (FIFO).
+
+## Brainf\*ck
+
+The project includes a Brainf\*ck script that prints "School" followed by a new line.
+
+## Authors
+
+- **Aishah Ayomide Mabayoje**
+- Email: maishah2540@gmail.com
+- **Ezejanu Dike**
+- Email: Ezejanu_nno@ymail.com
+
+Feel free to reach out to the authors with any questions or feedback regarding this project.
+
+---
